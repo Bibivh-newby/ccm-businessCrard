@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cordi van Huyssteen - Digital Business Card</title>
+    <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      /* Card Container */
+      .card {
+        background: white;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Header Section with Cover Image */
+      .card-header {
+        height: 180px;
+        background: #1a1a1a; /* Black color from image */
+        position: relative;
+      }
+
+      /* Profile Picture */
+      .profile-img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid white;
+        position: absolute;
+        bottom: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Default profile icon */
+      .profile-icon {
+        font-size: 60px;
+        color: #8e8e8e;
+      }
+
+      /* Content Section */
+      .card-body {
+        padding: 80px 30px 30px 30px;
+        text-align: center;
+        /* Green background from the image */
+        background-color: #4c7e4c;
+        color: white;
+      }
+
+      .name {
+        font-size: 32px;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 5px;
+      }
+
+      .title {
+        color: #e0e0e0;
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+
+      /* Contact Info */
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .contact-btn {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e9f9ee;
+        color: #4c7e4c;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 24px;
+      }
+
+      .contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Contact Details Section */
+      .contact-details {
+        background-color: #f5f5f5;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: left;
+        margin-top: 30px;
+        color: #333;
+      }
+
+      .contact-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-title {
+        font-size: 24px;
+        color: #4c7e4c;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .save-btn {
+        background-color: #4c7e4c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .save-btn:hover {
+        background-color: #3a613a;
+      }
+
+      .contact-label {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .contact-value {
+        color: #333;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      /* QR Code Section */
+      .qr-section {
+        margin-top: 25px;
+        text-align: center;
+      }
+
+      .qr-container {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      #qrcode {
+        width: 100%;
+        height: 100%;
+      }
+
+      .qr-caption {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #fff;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        .card {
+          border-radius: 8px;
+        }
+
+        .card-body {
+          padding: 70px 20px 20px 20px;
+        }
+
+        .profile-img {
+          width: 120px;
+          height: 120px;
+          bottom: -60px;
+        }
+
+        .name {
+          font-size: 28px;
+        }
+
+        .contact-btn {
+          width: 60px;
+          height: 60px;
+          font-size: 20px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header">
+        <div class="profile-img">
+          <!-- Replace with your actual logo -->
+          <img src="/logo.png" alt="Company Logo" />
+        </div>
+      </div>
+      <div class="card-body">
+        <h1 class="name">Cordi van Huyssteen</h1>
+        <p class="title">Owner</p>
+
+        <div class="contact-links">
+          <a href="tel:+27798683840" class="contact-btn">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://wa.me/+27798683840" class="contact-btn">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:office@cordicare.africa" class="contact-btn">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+
+        <div class="contact-details">
+          <div class="contact-header">
+            <div class="contact-title">
+              <i class="fas fa-address-card"></i>
+              Contact
+            </div>
+            <button class="save-btn" id="saveContactBtn">
+              Save To Contacts
+              <i class="fas fa-user-plus"></i>
+            </button>
+          </div>
+
+          <div class="contact-field">
+            <p class="contact-label">Name</p>
+            <p class="contact-value">Cordi van Huyssteen</p>
+          </div>
+
+          <div class="contact-field">
+            <p class="contact-label">Mobile</p>
+            <p class="contact-value">+27 79 868 3840</p>
+          </div>
+          <div class="contact-field">
+            <p class="contact-label">Email</p>
+            <p class="contact-value">office@cordicare.africa</p>
+          </div>
+
+          <!-- Add more contact fields as needed -->
+        </div>
+
+        <div class="qr-section">
+          <div class="qr-container">
+            <div id="qrcode"></div>
+          </div>
+          <p class="qr-caption">Scan to save my contact info</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+      // Generate QR code
+      window.onload = function () {
+        // vCard format
+        const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Cordi van Huyssteen
+ORG:CordiCare Maintenance
+TITLE:Owner
+TEL;TYPE=CELL:+27798683840
+EMAIL:office@cordicare.africa
+END:VCARD`;
+
+        // Generate QR code
+        new QRCode(document.getElementById("qrcode"), {
+          text: vCardData,
+          width: 128,
+          height: 128,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+
+        // Save contact button functionality
+        document
+          .getElementById("saveContactBtn")
+          .addEventListener("click", function () {
+            // Create a vCard file
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Cordi van Huyssteen
+ORG:CordiCare Maintenance
+TITLE:Owner
+TEL;TYPE=CELL:+27798683840
+EMAIL:office@cordicare.africa
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "cordi_van_huyssteen.vcf";
+            a.click();
+
+            URL.revokeObjectURL(url);
+          });
+      };
+    </script>
+  </body>
+</html>
